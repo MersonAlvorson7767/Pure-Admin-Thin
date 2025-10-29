@@ -1,0 +1,194 @@
+buttons:
+  pureLoginOut: LoginOut
+  pureLogin: Login
+  pureOpenSystemSet: Open System Configs
+  pureReload: Reload
+  pureCloseCurrentTab: Close CurrentTab
+  pureCloseLeftTabs: Close LeftTabs
+  pureCloseRightTabs: Close RightTabs
+  pureCloseOtherTabs: Close OtherTabs
+  pureCloseAllTabs: Close AllTabs
+  pureContentFullScreen: Content FullScreen
+  pureContentExitFullScreen: Content ExitFullScreen
+  pureClickCollapse: Collapse
+  pureClickExpand: Expand
+  pureConfirm: Confirm
+  pureSwitch: Switch
+  pureClose: Close
+  pureBackTop: BackTop
+  pureOpenText: Open
+  pureCloseText: Close
+  pureRefresh: Refresh
+  pureQuery: Query
+  pureReset: Reset
+  pureCancel: Cancel
+  pureViewDetail: View Detail
+search:
+  pureTotal: Total
+  pureHistory: History
+  pureCollect: Collect
+  pureDragSort: （Drag Sort）
+  pureEmpty: Empty
+  purePlaceholder: Search Menu
+panel:
+  pureSystemSet: System Configs
+  pureCloseSystemSet: Close System Configs
+  pureClearCacheAndToLogin: Clear cache and return to login page
+  pureClearCache: Clear Cache
+  pureOverallStyle: Overall Style
+  pureOverallStyleLight: Light
+  pureOverallStyleLightTip: Set sail freshly and light up the comfortable work interface
+  pureOverallStyleDark: Dark
+  pureOverallStyleDarkTip: Moonlight Overture, indulge in the tranquility and elegance of the night
+  pureOverallStyleSystem: Auto
+  pureOverallStyleSystemTip: Synchronize time, the interface naturally responds to morning and dusk
+  pureThemeColor: Theme Color
+  pureLayoutModel: Layout Model
+  pureVerticalTip: The menu on the left is familiar and friendly
+  pureHorizontalTip: Top menu, concise overview
+  pureMixTip: Mixed menu, flexible
+  pureStretch: Stretch Page
+  pureStretchFixed: Fixed
+  pureStretchFixedTip: Compact pages make it easy to find the information you need
+  pureStretchCustom: Custom
+  pureStretchCustomTip: Minimum 1280, maximum 1600
+  pureTagsStyle: Tags Style
+  pureTagsStyleSmart: Smart
+  pureTagsStyleSmartTip: Smart tags add fun and brilliance
+  pureTagsStyleCard: Card
+  pureTagsStyleCardTip: Card tags for efficient browsing
+  pureTagsStyleChrome: Chrome
+  pureTagsStyleChromeTip: Chrome style is classic and elegant
+  pureInterfaceDisplay: Interface Display
+  pureGreyModel: Grey Model
+  pureWeakModel: Weak Model
+  pureHiddenTags: Hidden Tags
+  pureHiddenFooter: Hidden Footer
+  pureMultiTagsCache: MultiTags Cache
+menus:
+  pureHome: Home
+  pureLogin: Login
+  pureAbnormal: Abnormal Page
+  pureFourZeroFour: "404"
+  pureFourZeroOne: "403"
+  pureFive: "500"
+  purePermission: Permission Manage
+  purePermissionPage: Page Permission
+  purePermissionButton: Button Permission
+  purePermissionButtonRouter: Route return button permission
+  purePermissionButtonLogin: Login interface return button permission
+  batchStatistics: Batch Statistics
+  bill: Bill
+  smsChat: SMS Chat
+  statistics: Statistics
+  unsentYesterday: Unsent Yesterday
+status:
+  pureLoad: Loading...
+  pureMessage: Message
+  pureNotify: Notify
+  pureTodo: Todo
+  pureNoMessage: No Message
+  pureNoNotify: No Notify
+  pureNoTodo: No Todo
+login:
+  pureUsername: Username
+  purePassword: Password
+  pureLogin: Login
+  pureLoginSuccess: Login Success
+  pureLoginFail: Login Fail
+  pureUsernameReg: Please enter username
+  purePassWordReg: Please enter password
+  purePassWordRuleReg: The password format should be any combination of 8-18 digits
+common:
+  pureNoData: No Data
+  pureLoadingData: Loading Data...
+  pureLoadFailed: Load Failed
+  pureDateRange: Date Range
+  pureStartDate: Start Date
+  pureEndDate: End Date
+  purePageSize: Page Size
+  pureTotalRecords: Total Records
+  pureSuccess: Success
+  pureFailed: Failed
+  pureSelectDate: Select Date
+table:
+  pureOperation: Operation
+  pureView: View
+  pureEdit: Edit
+  pureDelete: Delete
+  pureDetail: Detail
+  pureExport: Export
+  pureImport: Import
+  pureBatchDelete: Batch Delete
+  pureBatchExport: Batch Export
+statistics:
+  pureTitle: Statistics
+  pureQueueSize: Queue Size
+  pureCreateSize: Total
+  pureCallSize: Batch Times
+  pureSendSize: Sent Count
+  pureSendRate: Send Rate
+  pureReceiveSize: Reply Count
+  pureReceiveRate: Reply Rate
+  pureFailureSize: Failed Count
+  pureFailureRate: Failure Rate
+  pureDate: Date
+  pureTime: Time
+  pureSendWindow: Send Window
+bill:
+  pureTitle: Bill
+  pureCount: Count
+  pureBalance: Balance
+  purePreviousBalance: Previous Balance
+  pureDescription: Description
+  pureCreateTime: Create Time
+  pureTransactionType: Transaction Type
+  pureAmount: Amount
+  pureRemainingAmount: Remaining Amount
+batchStatistics:
+  pureTitle: Batch Statistics
+  pureSuccessCount: Success Count
+  pureTotalCount: Total Count
+  pureErrorInsufficientBalance: Numbers failed to send due to insufficient balance
+  pureErrorInsufficientQuota: Numbers failed to send due to insufficient quota, please purchase more cards
+  pureOtherErrors: Other Errors
+  pureSubmittedNumbers: Submitted Numbers
+  pureSubmittedMessages: Submitted Messages
+  pureSendResult: Send Result
+smsChat:
+  pureTitle: SMS Chat
+  pureBatchSend: Bulk SMS
+  purePhoneNumber: Peer Number
+  pureMyPhone: My Number
+  pureAllPhones: All Numbers
+  pureUnread: Unread
+  pureReply: Replied
+  pureNoReply: No Reply
+  pureRecipientPhone: Recipient
+  pureRemark: Remark
+  pureSendMessage: Send Text
+  pureSendImage: Send Image
+  pureSendMessageEmpty: Message cannot be empty
+  pureDeleteConfirm: Confirm to delete this conversation? This action cannot be undone
+  pureRemarkEmpty: Remark cannot be empty
+  pureBatchContent: Message Content
+  pureBatchPhones: Phone List (one per line)
+  pureEnableSplit: Allow multi-part SMS when exceeding length
+  pureCurrentPhoneCount: Current number count
+unsentYesterday:
+  pureTitle: Unsent Yesterday
+  pureUnsentCount: Unsent Count
+  pureUnsentList: Unsent List
+  pureResend: Resend
+  pureResendAll: Resend All
+  pureMarkAsSent: Mark as Sent
+  
+error:
+  pureNetworkError: Network Error
+  pureRequestTimeout: Request Timeout
+  pureServerError: Server Error
+  pureDataFormatError: Data Format Error
+  purePermissionDenied: Permission Denied
+  pureSessionExpired: Session Expired
+  pureInvalidToken: Invalid Token
+  pureKeyExchangeFailed: Key Exchange Failed
