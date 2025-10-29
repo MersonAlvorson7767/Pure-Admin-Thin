@@ -21,26 +21,28 @@
 
     <div class="chat-main">
       <div class="chat-list">
-        <el-card v-for="chat in chatList" :key="chat.id" class="chat-card" :class="{ selected: chat.id === selectedChat?.id }" @click="selectChat(chat)">
-          <div class="chat-card-row">
-            <el-tag type="danger">{{ $t('smsChat.pureUnread') }}: {{ chat.unReadSize || 0 }}</el-tag>
-            <el-tag type="success">{{ $t('smsChat.pureSent') }}: {{ chat.sendSize || 0 }}</el-tag>
-            <el-tag type="info">{{ $t('smsChat.pureReceived') }}: {{ chat.receiveSize || 0 }}</el-tag>
-            <el-button v-if="!(chat.sortIndex > 0)" :title="$t('smsChat.purePin')" link @click.stop="setSort(chat, true)">
-              <i class="bi bi-pin-angle-fill"></i>
-            </el-button>
-            <el-button v-else :title="$t('smsChat.pureUnpin')" link @click.stop="setSort(chat, false)">
-              <i class="bi bi-pin"></i>
-            </el-button>
-          </div>
-          <div class="chat-card-row" v-if="chat.addressBookName">
-            <el-tag type="warning">{{ chat.addressBookName }}</el-tag>
-          </div>
-          <div class="chat-card-row phone-row">
-            <span class="phone-1">+({{ chat.callingCode }}){{ chat.phone }}</span>
-            <span class="phone-2">+({{ chat.phoneCallingCode }}){{ chat.cardNo }}</span>
-          </div>
-        </el-card>
+        <div class="chat-cards-container">
+          <el-card v-for="chat in chatList" :key="chat.id" class="chat-card" :class="{ selected: chat.id === selectedChat?.id }" @click="selectChat(chat)">
+            <div class="chat-card-row">
+              <el-tag type="danger">{{ $t('smsChat.pureUnread') }}: {{ chat.unReadSize || 0 }}</el-tag>
+              <el-tag type="success">{{ $t('smsChat.pureSent') }}: {{ chat.sendSize || 0 }}</el-tag>
+              <el-tag type="info">{{ $t('smsChat.pureReceived') }}: {{ chat.receiveSize || 0 }}</el-tag>
+              <el-button v-if="!(chat.sortIndex > 0)" :title="$t('smsChat.purePin')" link @click.stop="setSort(chat, true)">
+                <i class="bi bi-pin-angle-fill"></i>
+              </el-button>
+              <el-button v-else :title="$t('smsChat.pureUnpin')" link @click.stop="setSort(chat, false)">
+                <i class="bi bi-pin"></i>
+              </el-button>
+            </div>
+            <div class="chat-card-row" v-if="chat.addressBookName">
+              <el-tag type="warning">{{ chat.addressBookName }}</el-tag>
+            </div>
+            <div class="chat-card-row phone-row">
+              <span class="phone-1">+({{ chat.callingCode }}){{ chat.phone }}</span>
+              <span class="phone-2">+({{ chat.phoneCallingCode }}){{ chat.cardNo }}</span>
+            </div>
+          </el-card>
+        </div>
         <el-pagination
           class="chat-pagination"
           background
@@ -461,11 +463,18 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .page-content { padding: 24px; }
-.sms-chat-page { background: #fff; min-height: 100vh; padding: 32px; }
+.sms-chat-page { 
+  background: #fff; 
+  height: calc(100vh - 48px); /* 减去 padding */
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
 
 /* 工具条修复：标题不换行，不被压缩；actions 可折行 */
 .toolbar-section {
   display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+  flex-shrink: 0; /* 防止工具栏被压缩 */
 }
 .toolbar-section h1 {
   margin: 0;
@@ -476,33 +485,100 @@ onBeforeUnmount(() => {
 }
 .toolbar-actions { display: flex; align-items: center; gap: 10px; flex: 1 1 auto; min-width: 260px; }
 
-.chat-main { display: flex; gap: 18px; align-items: stretch; }
+/* 聊天主区域：占据剩余高度 */
+.chat-main { 
+  display: flex; 
+  gap: 18px; 
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-height: 0; /* 允许内部滚动 */
+}
 
-/* 左侧列表锁定宽度，避免被挤瘦 */
-.chat-list { flex: 0 0 340px; width: 340px; min-width: 300px; max-width: 420px; display: flex; flex-direction: column; }
-.chat-card { margin-bottom: 10px; cursor: pointer; border-radius: 12px; box-shadow: 0 6px 16px rgba(2,6,23,.06); border: 1px solid #f3f4f6; }
+/* 左侧列表：固定宽度，填充高度，分页固定在底部 */
+.chat-list { 
+  flex: 0 0 340px; 
+  width: 340px; 
+  min-width: 300px; 
+  max-width: 420px; 
+  display: flex; 
+  flex-direction: column;
+  height: 100%; /* 填充父容器高度 */
+  overflow: hidden; /* 防止溢出 */
+}
+
+/* 聊天卡片容器：可滚动区域 */
+.chat-cards-container {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+  padding-bottom: 10px;
+}
+
+.chat-card { 
+  margin-bottom: 10px; 
+  cursor: pointer; 
+  border-radius: 12px; 
+  box-shadow: 0 6px 16px rgba(2,6,23,.06); 
+  border: 1px solid #f3f4f6; 
+}
 .chat-card.selected { border: 2px solid #ff7a59; background: #fff7f3; }
 .chat-card-row { display: flex; gap: 8px; align-items: center; margin-bottom: 2px; }
 .phone-row { font-family: monospace; color: #334155; font-size: 15px; gap: 8px; }
-.chat-pagination { margin-top: 10px; align-self: flex-end; }
+
+/* 分页固定在底部 */
+.chat-pagination { 
+  margin-top: 10px; 
+  align-self: center;
+  flex-shrink: 0; /* 防止分页被压缩 */
+}
 
 /* 右侧自适应 */
-.chat-detail { flex: 1 1 auto; min-width: 0; }
+.chat-detail { flex: 1 1 auto; min-width: 0; height: 100%; }
 
 /* 消息区样式（原样保留） */
-.chatbox-v2 { border-radius: 16px; box-shadow: 0 10px 24px rgba(2,6,23,.06); overflow: hidden; }
-.chatbox-header { background: linear-gradient(180deg,#fff 0%,#fff7f3 100%); border-bottom: 1px solid #f2e8e5; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.chatbox-v2 { 
+  border-radius: 16px; 
+  box-shadow: 0 10px 24px rgba(2,6,23,.06); 
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.chatbox-header { 
+  background: linear-gradient(180deg,#fff 0%,#fff7f3 100%); 
+  border-bottom: 1px solid #f2e8e5; 
+  padding: 12px 16px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  gap: 12px;
+  flex-shrink: 0;
+}
 .chat-meta { display: flex; align-items: center; gap: 12px; }
 .chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; background: #fff; border: 1px solid #ffe1d6; border-radius: 999px; }
 .chip-label { color: #8a3b1e; font-weight: 800; white-space: nowrap; }
 .chip-input { width: auto !important; min-width: 120px; border: 0 !important; background: transparent !important; box-shadow: none !important; padding: 0 !important; font-weight: 800; color: #8a3b1e; }
-.chatbox-body { background: #fff; min-height: 320px; max-height: 540px; overflow-y: auto; padding: 12px 14px; }
+.chatbox-body { 
+  background: #fff; 
+  flex: 1 1 auto;
+  overflow-y: auto; 
+  padding: 12px 14px;
+  min-height: 0;
+}
 .message-list { display: flex; flex-direction: column; gap: 10px; }
 .message-in, .message-out { max-width: 92vw; padding: 10px 12px; border-radius: 14px; font-size: 15px; position: relative; box-shadow: 0 2px 8px rgba(2,6,23,.06); }
 .message-in { background: #fff; color: #0f172a; border: 1px solid #f2e8e5; align-self: flex-start; }
 .message-out { background: linear-gradient(90deg, #ff7a59 0%, #ffb86b 100%); color: #fff; border: 0; align-self: flex-end; }
 .message-meta { font-size: 12px; color: #64748b; margin-bottom: 2px; display: flex; align-items: center; gap: 8px; }
 .message-img { max-width: 280px; max-height: 260px; border-radius: 12px; object-fit: cover; }
-.chatbox-footer { background: #fff; border-top: 1px solid #f2e8e5; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+.chatbox-footer { 
+  background: #fff; 
+  border-top: 1px solid #f2e8e5; 
+  padding: 10px 12px; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px;
+  flex-shrink: 0;
+}
 .footer-actions { display: flex; gap: 8px; margin-top: 8px; }
 </style>
