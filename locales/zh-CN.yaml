@@ -175,6 +175,9 @@ smsChat:
   pureBatchPhones: 号码列表（每行一个）
   pureEnableSplit: 超过字符允许按多条收费
   pureCurrentPhoneCount: 当前号码总计
+  pureSent: 发送
+  pureReceived: 收到
+  pureDelete: 删除
 unsentYesterday:
   pureTitle: 昨日未发送
   pureUnsentCount: 未发送数量
